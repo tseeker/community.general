@@ -133,6 +133,8 @@ files:
   $filters/jc.py:
     maintainers: kellyjonbrazil
   $filters/json_query.py: {}
+  $filters/ldif.py:
+    maintainers: tseeker
   $filters/list.py:
     maintainers: vbotka
   $filters/path_join_shim.py:
