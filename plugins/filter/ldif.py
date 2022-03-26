@@ -89,11 +89,10 @@ def _dn_compare(rec1, rec2, mix_weighted):
         (dn1_attr, dn1_val) = _rdn_av(dn1_rdn)
         (dn2_attr, dn2_val) = _rdn_av(dn2_rdn)
         # Compare attribute names
-        if dn1_attr != dn2_attr:
-            if dn1_attr < dn2_attr:
-                return -1
-            else:
-                return 1
+        if dn1_attr < dn2_attr:
+            return -1
+        elif dn1_attr > dn2_attr:
+            return 1
         # Same attribute. Are both values weighted?
         v1w = _WEIGHTED_ATTR.fullmatch(dn1_val)
         v2w = _WEIGHTED_ATTR.fullmatch(dn2_val)
@@ -104,11 +103,10 @@ def _dn_compare(rec1, rec2, mix_weighted):
                 return int(w1) - int(w2)
         elif (v1w or v2w) and not mix_weighted:
             raise AnsibleFilterError("Cannot compare weighted and unweighted values")
-        if dn1_val != dn2_val:
-            if dn1_val < dn2_val:
-                return -1
-            else:
-                return 1
+        if dn1_val < dn2_val:
+            return -1
+        elif dn1_val > dn2_val:
+            return 1
     return len(dn1_rdns) - len(dn2_rdns)
 
 
