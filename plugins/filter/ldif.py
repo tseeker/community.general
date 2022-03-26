@@ -102,7 +102,7 @@ def _dn_compare(rec1, rec2, mix_weighted):
             (w2, dn2_val) = v2w.groups()
             if w1 != w2:
                 return int(w1) - int(w2)
-        elif v1w or v2w:
+        elif (v1w or v2w) and not mix_weighted:
             raise AnsibleFilterError("Cannot compare weighted and unweighted values")
         if dn1_val != dn2_val:
             if dn1_val < dn2_val:
